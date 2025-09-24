@@ -32,6 +32,7 @@ class Predictor(BasePredictor):
 
         print("Loading model...")
         self.canary_model = EncDecMultiTaskModel.from_pretrained("nvidia/canary-1b-v2")
+        self.canary_model.preprocessor.to("cuda")
         print("Model loading done!")
 
         self.supported_formats = (
@@ -166,20 +167,19 @@ class Predictor(BasePredictor):
             print(f"Created {audio_chunks_count} audio chunks")
 
             print("Starting transcription...")
-            transcriptions = []
+            audio_chunk_paths = []
             for audio_chunk_index in range(audio_chunks_count):
                 audio_chunk_path = os.path.join(
                     tmp_chunks_dir, f"chunk_{audio_chunk_index}.wav"
                 )
 
-                print(
-                    f"[{audio_chunk_index + 1}/{audio_chunks_count}] Running transcription on {audio_chunk_path}"
-                )
+                audio_chunk_paths.append(audio_chunk_path)
 
-                predicted_text = self.canary_model.transcribe(
-                    audio=[audio_chunk_path], batch_size=2, override_config=cfg
-                )[0].text
-                transcriptions.append(predicted_text)
+            predictions = self.canary_model.transcribe(
+                audio=audio_chunk_paths, batch_size=16, override_config=cfg
+            )
+
+            transcriptions = [p.text for p in predictions]
             print("Transcription done!")
 
         return "".join(transcriptions).strip()
