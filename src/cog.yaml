@@ -1,0 +1,20 @@
+# Configuration for Cog ⚙️
+# Reference: https://cog.run/yaml
+
+build:
+  # set to true if your model requires a GPU
+  gpu: true
+
+  # python version in the form '3.11' or '3.11.4'
+  python_version: "3.12.3"
+
+  # path to a Python requirements.txt file
+  python_requirements: requirements.txt
+
+  run:
+  - curl -o /usr/local/bin/pget -L "https://github.com/replicate/pget/releases/latest/download/pget_$(uname -s)_$(uname -m)"
+  - chmod +x /usr/local/bin/pget
+  - pip install "ruamel.yaml"
+  - pip3 install torch torchvision --index-url https://download.pytorch.org/whl/cu128
+
+predict: "predict.py:Predictor"
