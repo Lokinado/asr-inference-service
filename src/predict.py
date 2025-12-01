@@ -67,7 +67,7 @@ class Predictor(BasePredictor):
     ) -> Any:
         audio_path = str(audio)
         source_lang = source_lang.lower()
-        target_lang = source_lang.lower()
+        target_lang = target_lang.lower()
 
         # Check if format is supported
         if os.path.splitext(audio_path)[1].lower() not in self.supported_formats:
