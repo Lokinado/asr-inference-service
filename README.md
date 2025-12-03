@@ -114,9 +114,11 @@ Here you can see how the model performs on sample audio.
 
 **Input Audio:**
 
+Input audio can be found in samples folder. [Input audio file link](https://raw.githubusercontent.com/Lokinado/asr-inference-service/main/samples/obama.mp3)
+
 <audio controls>
   <source src="https://raw.githubusercontent.com/Lokinado/asr-inference-service/main/samples/obama.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
+  Audio playback not available on this browser.
 </audio>
 
 **Output Transcription:**
