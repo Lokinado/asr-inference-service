@@ -24,7 +24,7 @@ A robust Automatic Speech Recognition (ASR) inference service built with [Cog](h
 
 > **Note:** This is an **educational project** created to explore NVIDIA ASR models and the Cog framework. While functional, it is not currently optimized for high-scale production environments.
 
-[Github Repo](https://github.com/Lokinado/cert-manager-webhook-hostinger)
+[Github Repo](https://github.com/Lokinado/asr-inference-service)
 
 ## Features
 
